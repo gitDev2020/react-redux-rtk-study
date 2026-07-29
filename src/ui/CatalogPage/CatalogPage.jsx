@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Catalog.module.css';
 import {NavLink} from "react-router-dom";
-import {connect} from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const CatalogPage = ({catalogPage}) => {
-    let {products} = catalogPage;
+const CatalogPage = () => {
+    const products = useSelector((state) => state.catalogPage.products);
     return <div>
         <div className={""}>
             <h1>Каталог</h1>
@@ -31,9 +31,4 @@ const CatalogPage = ({catalogPage}) => {
     </div>
 };
 
-const mapStateToProps = ({catalogPage}) =>({
-    catalogPage
-});
-
-
-export default connect(mapStateToProps)(CatalogPage);
+export default CatalogPage;

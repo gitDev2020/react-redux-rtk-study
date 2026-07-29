@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import styles from './App.module.css';
-import ProductPageContainer from "./ui/ProductPage/ProductPageContainer";
+import ProductPage from "./ui/ProductPage/ProductPage";
 import HomePage from "./ui/HomePage/HomePage";
 import CatalogPage from "./ui/CatalogPage/CatalogPage";
 import {NavLink, Route, Routes} from "react-router-dom";
 
-const App = (props) => {
-    let { catalogPage, homePage, productPage } = props.state;
-
+const App = () => {
     return (
         <div className={styles.App}>
             <div>
@@ -18,7 +16,7 @@ const App = (props) => {
             <Routes>
             <Route path='/' element={<HomePage />}/>
             <Route path='/catalog' element={<CatalogPage />}/>
-            <Route path='/product' element={<ProductPageContainer />}/>
+            <Route path='/product' element={<ProductPage />}/>
             </Routes>
         </div>
     );

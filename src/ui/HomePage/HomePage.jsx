@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Home.module.css';
 import { NavLink } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const HomePage = ({homePage}) => {
+const HomePage = () => {
 
-    let {banner, popularProducts} = homePage;
+    const {banner, popularProducts} = useSelector((state) => state.homePage);
 
 
     return <div>
@@ -36,10 +36,4 @@ const HomePage = ({homePage}) => {
     </div>
 };
 
-const mapStateToProps = (state) => ({
-    homePage: state.homePage
-});
-
-
-
-export default connect(mapStateToProps)(HomePage);
+export default HomePage;

@@ -2,13 +2,16 @@ import React from 'react';
 import Comment from "./Comment";
 import globalStyles from './../../App.module.css';
 import styles from './Product.module.css';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { addComment } from '../../redux/productPageReducer';
 
 const ProductPage = ({productPage, addCommentActionCreator}) => {
 
-    let textareaElement = React.createRef();
+    const distath = useDispatch()
 
-    let {product, comments} = productPage;
+    const {product, comments} = useSelector((state) => state.productPage);
+
+    let textareaElement = React.createRef();
 
     let commentsElements = comments.map(c =>
         <div key={c.id}>
@@ -32,7 +35,7 @@ const ProductPage = ({productPage, addCommentActionCreator}) => {
             <div className={globalStyles.productCard}>
                 <div>
                     <img className={`${globalStyles.btn} ${styles.btn}`}
-                         src={product.imgUrl}/>
+                         src={product.imgUrl} alt={product.title}/>
                 </div>
                 <div>
                     <h1>{product.title}</h1>
@@ -61,13 +64,5 @@ const ProductPage = ({productPage, addCommentActionCreator}) => {
             </div>
         </div>)
 }
-
-ProductPage.propTypes = {
-    productPage: PropTypes.shape({
-        product: PropTypes.object.isRequired,
-        comments: PropTypes.array.isRequired
-    })
-};
-
 
 export default ProductPage;

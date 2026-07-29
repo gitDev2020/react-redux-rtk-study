@@ -1,3 +1,5 @@
+import { createSlice } from '@reduxjs/toolkit';
+
 let initState = {
     banner: {
         targetUrl: '',
@@ -26,10 +28,16 @@ let initState = {
         }
     ]
 }
-const homePageReducer = (state = initState, action)=> {
-    switch (action.type){
-        default:
-            return state;
+
+const homeSlice = createSlice({
+    name: "homeSlice",
+    initialState: initState,
+    reducers: {
+        addProduct: (state, action) => {
+            state.popularProducts.push(action.payload)
+        }
     }
-}
-export default homePageReducer;
+})
+
+export const {addProduct} = homeSlice.actions
+export default homeSlice.reducer;

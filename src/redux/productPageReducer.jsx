@@ -1,5 +1,4 @@
-export const ADD_COMMENT = 'DM/PRODUCT_PAGE/ADD_COMMENT'; // redux-ducks
-export const addCommentActionCreator = (commentText) => ({ type: ADD_COMMENT, text: commentText });
+import { createSlice } from '@reduxjs/toolkit';
 
 let initSate = {
     product: {
@@ -24,18 +23,19 @@ let initSate = {
     ]
 }
 
-const productPageReducer = (state = initSate, action)=>{
-    switch (action.type){
-        case ADD_COMMENT:
-            let newComment = {
-                id: state.comments.length + 1,
-                text: action.text
-            };
-
-    
-            return {...state, comments: [...state.comments, newComment]};
-        default:
-            return state;
+const productSlice = createSlice({
+    name: "productPage",
+    initialState: initSate,
+    reducers: {
+        addComment: (state, action) => {
+            const newComment = {
+                id: state.comment.length + 1,
+                text: action.payload
+            }
+            state.comment.push(newComment)
+        }
     }
-}
-export default productPageReducer;
+})
+
+export const { addComment } = productSlice.actions;
+export default productSlice.reducer;

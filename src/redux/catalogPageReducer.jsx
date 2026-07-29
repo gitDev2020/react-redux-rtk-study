@@ -1,3 +1,5 @@
+import { createSlice } from '@reduxjs/toolkit';
+
 let initState = {
     products: [
         {
@@ -27,12 +29,15 @@ let initState = {
     ]
 }
 
-const catalogPageReducer = (state = initState, action) => {
-    switch (action.type) {
-        default:
-            return state;
+const catalogSlice = createSlice({
+    name: "catalogSlice",
+    initialState: initState,
+    reducers: {
+        addProduct: (state, action) => {
+            state.products.push(action.payload)
+        }
     }
+})
 
-}
-
-export default catalogPageReducer;
+export const {addProduct} = catalogSlice.actions;
+export default catalogSlice.reducer;
